@@ -8,9 +8,7 @@ const { secret } = require('../config/secret'); //database configuration
 // user management
 router.post('/create', userController.createaccount);
 router.post('/login', userController.authenticate);
-//router.post('/reset-password', userController.resetpassword);
-
-
+router.post('/company-create', userController.createcompany);
 
 function hasToken(req, res, next) {
     const token = req.headers['x-access-token'];

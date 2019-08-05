@@ -1,7 +1,7 @@
 const userModel = require('../model/users');
 
 module.exports = {
-createaccount: function(req, res, next){
+createcompany: function(req, res, next){
 userModel.create(
 {
 fullname:req.body.fullname,
@@ -10,7 +10,7 @@ address:req.body.address,
 email:req.body.email,
 password:req.body.password,
 phone:req.body.phone,
-role:'user'
+role:'company'
 }, 
 function (err, result) {
 if (err) 
@@ -21,6 +21,26 @@ res.json({status: "ok", message: "account created successfully"});
 }
 )  
 },
+createaccount: function(req, res, next){
+    userModel.create(
+    {
+    fullname:req.body.fullname,
+    username:req.body.username,
+    address:req.body.address,
+    email:req.body.email,
+    password:req.body.password,
+    phone:req.body.phone,
+    role:'user'
+    }, 
+    function (err, result) {
+    if (err) 
+    next(err);
+    else
+    res.json({status: "ok", message: "account created successfully"});
+        
+    }
+    )  
+    },
 
 authenticate: function(req, res, next) {
 userModel.findOne({username:req.body.username}, function(err, me){
